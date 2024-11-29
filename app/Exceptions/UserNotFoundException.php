@@ -5,9 +5,9 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Http\JsonResponse;
 
-class ImageProcessingException extends Exception
+class UserNotFoundException extends Exception
 {
-    public function __construct($message = "Error processing the image.", $code = 0, Exception $previous = null)
+    public function __construct($message = 'User not found', $code = 0, Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }
@@ -17,6 +17,6 @@ class ImageProcessingException extends Exception
         return response()->json([
             'success' => false,
             'message' => $this->getMessage(),
-        ], 500);
+        ], 404);
     }
 }

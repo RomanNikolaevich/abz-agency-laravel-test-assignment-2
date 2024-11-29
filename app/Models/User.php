@@ -68,4 +68,11 @@ class User extends Authenticatable
         );
     }
 
+    public static function hasDuplicate(string $email, string $phone): bool
+    {
+        return self::where('email', $email)
+            ->orWhere('phone', $phone)
+            ->exists();
+    }
+
 }
