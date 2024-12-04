@@ -31,7 +31,7 @@ class UserShowRequest extends FormRequest
     {
         $response = response()->json([
             'success' => false,
-            'message' => 'The user with the requested id does not exist',
+            'message' => 'The user with the requested id does not exist.',
             'fails' => $validator->errors(),
         ], 400);
 
