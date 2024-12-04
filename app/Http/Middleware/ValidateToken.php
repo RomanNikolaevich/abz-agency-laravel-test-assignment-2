@@ -28,4 +28,13 @@ readonly class ValidateToken
 
         return $next($request);
     }
+
+    public function terminate(Request $request, Response $response): void
+    {
+        $accessToken = $request->get('accessToken');
+
+        if ($response->isSuccessful() && $accessToken) {
+            $this->tokenService->markAsUsed($accessToken);
+        }
+    }
 }

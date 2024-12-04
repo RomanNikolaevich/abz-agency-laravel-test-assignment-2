@@ -8,19 +8,12 @@ use App\Http\Requests\UserCreateRequest;
 use App\Models\User;
 use App\Services\ImageProcessing\ImageProcessorService;
 use App\Services\ImageProcessing\Strategies\UploadedImageSourceService;
-use App\Services\TokenService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
 
 class UserCreateController extends Controller
 {
-    public function __construct(private readonly TokenService $tokenService)
-    {
-    }
-
     public function __invoke(UserCreateRequest $request): JsonResponse
     {
-        $accessToken = $request->get('accessToken');
         $userStoreData = $request->validated();
 
         try {
@@ -32,12 +25,7 @@ class UserCreateController extends Controller
             return $e->render();
         }
 
-        $user = DB::transaction(function () use ($userStoreData, $accessToken) {
-            $user = User::create($userStoreData);
-            $this->tokenService->markAsUsed($accessToken);
-
-            return $user;
-        });
+        $user = User::create($userStoreData);
 
         return response()->json([
             'success' => true,
