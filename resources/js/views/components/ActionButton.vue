@@ -29,10 +29,10 @@ export default {
     computed: {
         buttonClass() {
             return [
-                'mt-4 py-2 px-4 rounded-md focus:outline-none focus:ring-2',
+                'rounded-md px-3.5 py-2.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
                 this.disabled
-                    ? 'bg-gray-400 cursor-not-allowed text-gray-200'
-                    : 'bg-indigo-500 hover:bg-indigo-600 text-white focus:ring-indigo-400',
+                    ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
+                    : 'bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline-indigo-600',
             ];
         },
     },
