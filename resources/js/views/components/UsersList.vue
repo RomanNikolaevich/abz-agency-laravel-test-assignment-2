@@ -1,36 +1,50 @@
 <template>
-    <div>
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Users List</h2>
-        <p>Select position</p>
-    </div>
+    <div v-if="state.success" class="relative z-10">
+        <h2 class="text-center text-lg font-semibold text-gray-800 mb-6">
+            User List Settings
+        </h2>
 
-    <div v-if="state.success">
-        <div class="mb-4">
-            <label for="user-count" class="block text-sm font-medium text-gray-700">Users per page:</label>
-            <input
-                type="number"
-                id="user-count"
-                v-model="state.userCount"
-                @change="handleCountChange"
-                min="1"
-                class="mt-2 w-20 h-8 p-1 border border-gray-300 rounded-md"
+        <!-- Настройки -->
+        <div
+            class="flex flex-wrap md:flex-row md:items-center md:justify-center gap-4 flex-col"
+        >
+            <!-- Users per page -->
+            <div class="flex items-center gap-2">
+                <label for="user-count" class="text-sm font-medium text-gray-700">
+                    Users per page:
+                </label>
+                <input
+                    type="number"
+                    id="user-count"
+                    v-model="state.userCount"
+                    @change="handleCountChange"
+                    min="1"
+                    class="w-20 h-8 p-1 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <!-- Page number -->
+            <div class="flex items-center gap-2">
+                <label for="page-number" class="text-sm font-medium text-gray-700">
+                    Page number:
+                </label>
+                <input
+                    type="number"
+                    id="page-number"
+                    v-model="state.pageCount"
+                    @change="handlePageChange"
+                    min="1"
+                    class="w-20 h-8 p-1 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <!-- Reset Filters Button -->
+            <ActionButton
+                :onClick="resetFilters"
+                text="Reset filters"
             />
         </div>
 
-        <div class="mb-4">
-            <label for="page-number" class="block text-sm font-medium text-gray-700">Page number:</label>
-            <input
-                type="number"
-                id="page-number"
-                v-model="state.pageCount"
-                @change="handlePageChange"
-                min="1"
-                class="mt-2 w-20 h-8 p-1 border border-gray-300 rounded-md"
-            />
-        </div>
-        <ActionButton :onClick="resetFilters"
-                      text="Reset filters"
-        />
 
         <ul class="divide-y divide-gray-100">
             <li v-for="user in state.users" :key="user.id" class="flex justify-between gap-x-6 py-5">

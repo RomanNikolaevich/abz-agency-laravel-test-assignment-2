@@ -1,9 +1,6 @@
 <template>
     <div>
-        <h1 class="text-3xl font-semibold text-gray-900 mb-4">Users page</h1>
-
-        <TokenRefresher/>
-        <RegisterNewUser/>
+        <HeroSection />
 
         <div class="mb-10">
             <UsersList :userCount="userCount"
@@ -18,12 +15,11 @@
 <script>
 import {ref} from 'vue';
 import UsersList from "@/views/components/UsersList.vue";
-import TokenRefresher from "@/views/components/TokenRefresher.vue";
-import RegisterNewUser from "@/views/components/RegisterNewUser.vue";
+import HeroSection from "@/views/components/HeroSection.vue";
 
 export default {
     name: 'UsersPage',
-    components: {RegisterNewUser, TokenRefresher, UsersList},
+    components: {HeroSection, UsersList},
     setup() {
         const userCount = ref(6);
         const pageCount = ref(1);
