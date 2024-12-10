@@ -72,7 +72,7 @@
                 <p class="mt-4 text-lg text-gray-600">
                     Explore the project's source code, including API implementation, frontend integration, and more.
                 </p>
-                <a href="https://github.com/RomanNikolaevich/abz-agency-laravel-test-assignment-2" target="_blank"
+                <a href="https://github.com/RomanNikolaevich/abz-agency-laravel-test-assignment-api" target="_blank"
                    class="mt-6 inline-block rounded-lg bg-blue-600 px-6 py-3 text-lg font-medium text-white shadow-lg hover:bg-blue-500">
                     Visit GitHub Repository
                 </a>
