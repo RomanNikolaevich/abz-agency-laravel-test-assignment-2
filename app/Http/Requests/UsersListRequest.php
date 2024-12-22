@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Responses\UsersListResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
@@ -28,11 +29,7 @@ class UsersListRequest extends FormRequest
 
     protected function failedValidation(Validator $validator): void
     {
-        $response = response()->json([
-            'success' => false,
-            'message' => 'Validation failed.',
-            'fails' => $validator->errors(),
-        ], 422);
+        $response = UsersListResponse::validationFailed($validator);
 
         throw new ValidationException($validator, $response);
     }
