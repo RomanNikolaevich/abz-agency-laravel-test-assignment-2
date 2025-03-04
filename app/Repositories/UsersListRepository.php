@@ -14,6 +14,8 @@ class UsersListRepository
         $count = $request->input(key: 'count', default: $defaultCount);
         $page = $request->input(key: 'page', default: 1);
 
-        return User::query()->paginate($count, ['*'], 'page', $page);
+        return User::query()
+            ->orderBy('id', 'DESC')
+            ->paginate($count, ['*'], 'page', $page);
     }
 }
